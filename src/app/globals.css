@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-blue: #2B5895;
+  --color-brand-orange: #F58220;
+  --color-accent-blue-light: #4A7DB8;
+  --color-accent-orange-light: #FF9E4A;
+  
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  --animate-reveal: reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes ripple {
+    0% { transform: scale(1); opacity: 0.5; }
+    100% { transform: scale(3); opacity: 0; }
+  }
+
+  --animate-ripple: ripple 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+:root {
+  --background: #FCFCFD;
+  --foreground: #101828;
+  --brand-blue: #2B5895;
+  --brand-orange: #F58220;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0C0F14;
+    --foreground: #F9FAFB;
+  }
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+  /* Awwwards Polish: Global Noise Texture */
+  .noise-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.15;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    mix-blend-mode: overlay;
+  }
+
+  /* Custom Cursor Base */
+  * {
+    cursor: none !important;
+  }
+
+  @media (max-width: 1024px) {
+    * {
+      cursor: auto !important;
+    }
+    .noise-overlay {
+      display: none;
+    }
+  }
+
+  /* Fluid Typography - Refined for better mobile scaling */
+  .text-fluid-h1 {
+    font-size: clamp(3rem, 4vw + 1rem, 5rem);
+    line-height: 1.0;
+    letter-spacing: -0.04em;
+    font-weight: 800;
+  }
+
+  .text-fluid-h2 {
+    font-size: clamp(1.75rem, 4vw + 0.5rem, 3.5rem);
+    line-height: 1.2;
+    font-weight: 700;
+  }
+
+  /* Responsive Spacing Utilities */
+  .section-padding {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+  
+  .section-gap {
+    @apply gap-10 md:gap-20 lg:gap-32;
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, var(--brand-blue) 0%, #4A7DB8 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .bg-glass {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+.section-container {
+  @apply max-w-7xl mx-auto px-4 md:px-6 w-full;
+}
+
+.mobile-text-center {
+  @apply text-center lg:text-left;
+}
+
+.mobile-items-center {
+  @apply items-center lg:items-start;
+}
+
+.mobile-justify-center {
+  @apply justify-center lg:justify-start;
+}
+
+
