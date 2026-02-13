@@ -188,17 +188,17 @@ const Hero = () => {
                 variants={textVariants}
                 initial="initial" animate="animate" exit="exit"
                 transition={{ delay: 0.4 }}
-                className="flex flex-wrap gap-4 justify-center md:justify-start"
+                className="flex flex-col md:flex-row gap-4 items-center md:items-start justify-center md:justify-start"
               >
                 <MagneticEffect strength={0.4}>
-                  <a href="tel:+2349039634446" className="group relative px-5 py-3 md:px-6 md:py-3 bg-brand-blue text-white rounded-full font-semibold text-base md:text-lg overflow-hidden flex items-center justify-center gap-2 md:gap-3 w-[160px] md:w-auto">
+                  <a href="tel:+2349039634446" className="group relative px-5 py-3 md:px-6 md:py-3 bg-brand-blue text-white rounded-full font-semibold text-base md:text-lg overflow-hidden flex items-center justify-center gap-2 md:gap-3 w-[200px] md:w-auto">
                     <div className="absolute inset-0 bg-brand-orange translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
                     <span className="relative z-10 flex items-center gap-2">Call Now <ArrowRight size={18} className="md:w-5 md:h-5" /></span>
                   </a>
                 </MagneticEffect>
                 
                 <MagneticEffect strength={0.4}>
-                  <a href="https://instagram.com/swifteeautos_logistics" target="_blank" rel="noopener noreferrer" className="group px-5 py-3 md:px-6 md:py-3 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full font-semibold text-base md:text-lg flex items-center justify-center gap-2 md:gap-3 hover:bg-white hover:text-brand-blue transition-all w-[160px] md:w-auto">
+                  <a href="https://instagram.com/swifteeautos_logistics" target="_blank" rel="noopener noreferrer" className="group px-5 py-3 md:px-6 md:py-3 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full font-semibold text-base md:text-lg flex items-center justify-center gap-2 md:gap-3 hover:bg-white hover:text-brand-blue transition-all w-[200px] md:w-auto">
                     Instagram <Instagram size={20} className="group-hover:rotate-12 transition-transform md:w-6 md:h-6" />
                   </a>
                 </MagneticEffect>

@@ -126,7 +126,7 @@ const FeaturedCars = () => {
         {/* Clean Cards - Horizontal Scroll */}
         <div className="relative">
           {/* Horizontal Scroll Container */}
-          <div className="overflow-x-auto overflow-y-hidden pb-8 -mx-6 px-6 md:-mx-10 md:px-10 scrollbar-hide snap-x snap-mandatory touch-pan-x">
+          <div className="overflow-x-auto overflow-y-hidden pb-8 -mx-6 px-6 md:-mx-10 md:px-10 scrollbar-hide snap-x snap-mandatory">
             <div className="flex gap-6 w-max flex-nowrap">
               {cars.map((car, index) => (
                 <motion.div
