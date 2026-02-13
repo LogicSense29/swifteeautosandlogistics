@@ -88,7 +88,7 @@ const FeaturedCars = () => {
   ];
 
   return (
-    <section ref={containerRef} className="relative z-10 -mt-10 md:-mt-14 pb-20">
+    <section ref={containerRef} className="relative z-10 -mt-8 md:-mt-14 pb-20">
       
       <div className="section-container relative z-10">
         

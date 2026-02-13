@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone, Instagram } from "lucide-react";
+import { Menu, X, Phone, Instagram, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import MagneticEffect from "./MagneticEffect";
 
@@ -132,7 +132,7 @@ const Navbar = () => {
                   src="/logo.png"
                   alt="Logo"
                   fill
-                  className="object-contain dark:invert"
+                  className="object-contain"
                   priority
                 />
               </div>
@@ -166,18 +166,14 @@ const Navbar = () => {
 
             {/* Menu Footer CTAs */}
             <div className="p-10 flex flex-col gap-4">
-              <a 
-                href="tel:+2349039634446" 
-                className="w-full bg-brand-blue text-white py-6 rounded-[2rem] font-black text-center text-xl shadow-2xl"
-              >
-                Call Support
+              {/* Using Hero-style buttons adapted for mobile menu */}
+              <a href="tel:+2349039634446" className="group relative px-5 py-3 md:px-6 md:py-3 bg-brand-blue text-white rounded-full font-semibold text-lg overflow-hidden flex items-center justify-center gap-2 w-full shadow-lg">
+                <div className="absolute inset-0 bg-brand-orange translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
+                <span className="relative z-10 flex items-center gap-2">Call Now <ArrowRight size={20} /></span>
               </a>
-              <a 
-                href="https://instagram.com/swifteeautos_logistics" 
-                target="_blank"
-                className="w-full bg-slate-100 dark:bg-white/5 text-foreground py-6 rounded-[2rem] font-black text-center text-xl"
-              >
-                Instagram
+
+              <a href="https://instagram.com/swifteeautos_logistics" target="_blank" rel="noopener noreferrer" className="group px-5 py-3 md:px-6 md:py-3 bg-white dark:bg-white/10 border border-slate-200 dark:border-white/20 text-slate-900 dark:text-white rounded-full font-semibold text-lg flex items-center justify-center gap-2 hover:bg-slate-100 hover:dark:bg-white/20 transition-all w-full">
+                Instagram <Instagram size={20} className="group-hover:rotate-12 transition-transform" />
               </a>
             </div>
           </motion.div>

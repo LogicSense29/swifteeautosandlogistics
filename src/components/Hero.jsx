@@ -28,7 +28,7 @@ const Hero = () => {
   const slides = [
     {
       id: 1,
-      image: lexusLandscape3,
+      image: lexusLandscape,
       position: "object-center",
       title: "Drive Your",
       highlight: "Dream",
