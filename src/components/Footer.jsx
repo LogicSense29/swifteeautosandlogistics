@@ -4,143 +4,137 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Phone, Instagram, Mail, Clock, MapPin, ChevronRight, Globe } from "lucide-react";
+import { Phone, Instagram, ArrowUpRight, ArrowRight } from "lucide-react";
 import MagneticEffect from "./MagneticEffect";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const footerLinks = [
-    { name: "About Swiftee", href: "#about" },
-    { name: "Luxury Fleet", href: "#autos" },
-    { name: "Global Logistics", href: "#logistics" },
-    { name: "Customer Stories", href: "#reviews" },
+    { title: "Explore", links: [
+      { name: "Luxury Fleet", href: "#autos" },
+      { name: "Global Logistics", href: "#logistics" },
+      { name: "About Swiftee", href: "#about" },
+      { name: "Reviews", href: "#reviews" },
+    ]},
+    { title: "Connect", links: [
+      { name: "Instagram", href: "https://instagram.com/swifteeautos_logistics", external: true },
+      { name: "WhatsApp", href: "https://wa.me/2349039634446", external: true },
+      { name: "Email Us", href: "mailto:info@swifteeautos.com", external: true },
+    ]}
   ];
 
   return (
-    <footer id="contact" className="bg-slate-950 text-slate-300 pt-32 pb-16 overflow-hidden relative border-t border-white/5 selection:bg-brand-orange selection:text-white">
-      {/* Background Depth */}
-      <div className="absolute top-0 right-[-10%] w-[600px] h-[600px] bg-brand-orange/5 rounded-full blur-[150px] -z-10" />
-      <div className="absolute bottom-0 left-[-10%] w-[600px] h-[600px] bg-brand-blue/5 rounded-full blur-[150px] -z-10" />
+    <footer id="contact" className="bg-slate-950 text-white relative overflow-hidden">
+      {/* Background Ambience */}
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent z-10" />
+      <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-brand-orange/5 rounded-full blur-[120px] pointer-events-none" />
+      
+      <div className="max-w-[1400px] mx-auto px-6 md:px-10 relative z-10">
+        
+        {/* 1. Integrated CTA Section */}
+        <div className="py-20 md:py-32 border-b border-white/5 flex flex-col md:flex-row items-start md:items-end justify-between gap-10">
+          <div>
+            {/* <span className="block text-brand-orange font-bold tracking-widest uppercase text-xs mb-4">
+              Next Steps
+            </span> */}
+            <h2 className="text-5xl md:text-8xl font-playfair font-black leading-[0.9]">
+              Ready to <br/>
+              <span className="italic font-light text-slate-500">upgrade?</span>
+            </h2>
+          </div>
 
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-20 lg:gap-24 mb-24">
-          {/* Brand Col */}
-          <div className="flex flex-col gap-10 text-center md:text-left items-center md:items-start">
-            <MagneticEffect strength={0.2}>
-              <Link href="/" className="relative h-12 w-32 block" data-cursor="pointer">
-                <Image
+          <MagneticEffect strength={0.3}>
+            <a 
+              href="https://wa.me/2349039634446"
+              target="_blank"
+              className="group relative inline-flex items-center justify-center px-8 py-6 bg-white text-slate-950 rounded-full font-bold text-lg overflow-hidden transition-all hover:bg-brand-orange hover:text-white"
+            >
+              <span className="relative z-10 flex items-center gap-2">
+                Start Conversation
+                <ArrowUpRight size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              </span>
+            </a>
+          </MagneticEffect>
+        </div>
+
+        {/* 2. Main Footer Content */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 py-20 md:py-28">
+          
+          {/* Brand Column */}
+          <div className="lg:col-span-5 flex flex-col justify-between h-full">
+            <div>
+              <Link href="/" className="block relative w-40 h-16 opacity-100 hover:opacity-80 transition-opacity mb-8">
+                 <Image
                   src="/logo.png"
-                  alt="Swiftee Autos & Logistics"
+                  alt="Swiftee Autos"
                   fill
                   className="object-contain brightness-0 invert"
                 />
               </Link>
-            </MagneticEffect>
-            <p className="text-lg leading-relaxed text-slate-400 font-medium italic">
-              "Reliability is not a promise — it's our culture."
-            </p>
-            <div className="flex gap-6">
-              <MagneticEffect strength={0.4}>
-                <a
-                  href="https://instagram.com/swifteeautos_logistics"
-                  target="_blank"
-                  data-cursor="pointer"
-                  className="flex items-center justify-center bg-white/5 p-5 rounded-3xl hover:bg-brand-orange hover:text-white transition-all border border-white/10 shadow-2xl"
-                >
-                  <Instagram size={24} />
-                </a>
-              </MagneticEffect>
-              <MagneticEffect strength={0.4}>
-                <a
-                  href="tel:+2349039634446"
-                  data-cursor="pointer"
-                  className="flex items-center justify-center bg-white/5 p-5 rounded-3xl hover:bg-brand-blue hover:text-white transition-all border border-white/10 shadow-2xl"
-                >
-                  <Phone size={24} />
-                </a>
-              </MagneticEffect>
+              <p className="text-xl md:text-2xl text-slate-400 font-light leading-relaxed max-w-md">
+                Redefining automotive luxury and logistics with absolute <span className="text-white font-medium">transparency</span> and speed.
+              </p>
+            </div>
+            
+            <div className="hidden lg:block pt-12">
+               <p className="text-xs text-slate-600 font-bold uppercase tracking-widest">
+                 Based in Nigeria • Delivering Worldwide
+               </p>
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div className="text-center md:text-left">
-            <h4 className="text-white font-black text-xs uppercase tracking-[0.4em] mb-12">Experience</h4>
-            <ul className="flex flex-col gap-6">
-              {footerLinks.map((link) => (
-                <li key={link.name}>
-                  <MagneticEffect strength={0.1}>
-                    <Link
-                      href={link.href}
-                      data-cursor="pointer"
-                      className="flex items-center justify-center md:justify-start gap-3 hover:text-white transition-colors group text-lg font-bold"
-                    >
-                      <span className="w-1.5 h-1.5 rounded-full bg-brand-orange scale-0 group-hover:scale-100 transition-transform" />
-                      {link.name}
-                    </Link>
-                  </MagneticEffect>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Links Columns */}
+          <div className="lg:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-10 md:gap-20">
+            {footerLinks.map((section) => (
+              <div key={section.title}>
+                <h4 className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-8">
+                  {section.title}
+                </h4>
+                <ul className="flex flex-col gap-4">
+                  {section.links.map((link) => (
+                    <li key={link.name}>
+                      <Link 
+                        href={link.href}
+                        target={link.external ? "_blank" : undefined}
+                        className="text-lg md:text-xl text-slate-300 hover:text-white transition-colors hover:pl-2 duration-300 block"
+                      >
+                        {link.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
 
-          {/* Contact Info */}
-          <div className="text-center md:text-left">
-            <h4 className="text-white font-black text-xs uppercase tracking-[0.4em] mb-12">Direct Reach</h4>
-            <ul className="flex flex-col gap-10">
-              <li className="flex flex-col md:flex-row items-center md:items-start gap-5">
-                <div className="bg-brand-orange/10 p-4 rounded-2xl border border-brand-orange/20">
-                  <Phone className="text-brand-orange" size={24} />
-                </div>
-                <div className="flex flex-col gap-1">
-                  <span className="text-slate-500 font-black text-[10px] uppercase tracking-widest">Global Hotline</span>
-                  <a href="tel:+2349039634446" className="text-xl hover:text-brand-orange transition-colors font-black tracking-tight" data-cursor="pointer">
-                    +234 903 963 4446
-                  </a>
-                </div>
-              </li>
-              <li className="flex flex-col md:flex-row items-center md:items-start gap-5">
-                <div className="bg-brand-blue/10 p-4 rounded-2xl border border-brand-blue/20">
-                  <Instagram className="text-brand-blue" size={24} />
-                </div>
-                <div className="flex flex-col gap-1">
-                  <span className="text-slate-500 font-black text-[10px] uppercase tracking-widest">Connect Digitally</span>
-                  <a href="https://instagram.com/swifteeautos_logistics" target="_blank" className="text-xl hover:text-brand-blue transition-colors font-black tracking-tight" data-cursor="pointer">
-                    @swifteeautos_logistics
-                  </a>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          {/* Business Hours */}
-          <div className="text-center md:text-left">
-            <h4 className="text-white font-black text-xs uppercase tracking-[0.4em] mb-12">Operations</h4>
-            <ul className="flex flex-col gap-8">
-              <li className="flex items-center justify-center md:justify-start gap-5">
-                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                <span className="text-lg font-bold">Mon – Sat: 8 AM – 7 PM</span>
-              </li>
-              <li className="flex items-center justify-center md:justify-start gap-5 opacity-60">
-                <div className="w-2 h-2 rounded-full bg-brand-orange" />
-                <span className="text-lg font-bold">Sunday: On Request</span>
-              </li>
-            </ul>
-            <div className="mt-12 p-8 bg-white/5 border border-white/10 rounded-[2.5rem] shadow-3xl text-center">
-              <Globe className="mx-auto text-brand-blue mb-4" size={32} />
-              <p className="text-sm font-black uppercase tracking-widest text-white">Nationwide Logistics</p>
-            </div>
+            {/* Legal / Policy */}
+             <div>
+                <h4 className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-8">
+                  Legal
+                </h4>
+                <ul className="flex flex-col gap-4">
+                  <li><Link href="#" className="text-sm text-slate-400 hover:text-white transition-colors">Privacy Policy</Link></li>
+                  <li><Link href="#" className="text-sm text-slate-400 hover:text-white transition-colors">Terms of Service</Link></li>
+                  <li><Link href="#" className="text-sm text-slate-400 hover:text-white transition-colors">Cookie Policy</Link></li>
+                </ul>
+             </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-16 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-10 text-xs font-black uppercase tracking-[0.2em] text-slate-600">
-          <p className="">© {currentYear} Swiftee Autos Ltd. Full Performance Architecture.</p>
-          <div className="flex gap-12">
-            <Link href="#" className="hover:text-white transition-colors" data-cursor="pointer">Privacy</Link>
-            <Link href="#" className="hover:text-white transition-colors" data-cursor="pointer">Terms</Link>
-          </div>
+        {/* Bottom Bar Mobile */}
+        <div className="lg:hidden pb-12 border-t border-white/5 pt-8">
+           <p className="text-xs text-slate-600 font-bold uppercase tracking-widest text-center">
+             © {currentYear} Swiftee Autos. All rights reserved.
+           </p>
         </div>
+
+      </div>
+
+      {/* 3. Massive Signature Watermark */}
+      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none pointer-events-none select-none">
+        <h1 className="text-[15vw] lg:text-[18vw] font-black text-white/[0.02] text-center tracking-tighter translate-y-[20%]">
+          SWIFTEE
+        </h1>
       </div>
     </footer>
   );

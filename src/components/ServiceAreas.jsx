@@ -28,7 +28,7 @@ const ServiceAreas = () => {
       
       <div className="section-container relative z-10">
         <div className="flex flex-col items-center text-center mb-20">
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -36,12 +36,12 @@ const ServiceAreas = () => {
           >
             <Globe size={20} className="animate-spin-slow" />
             Strategic Presence
-          </motion.div>
+          </motion.div> */}
 
           <h2 className="text-fluid-h2 mb-6 max-w-4xl leading-tight">
             Where We <span className="text-brand-orange font-playfair italic font-normal">Connect</span> With You
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl font-medium leading-relaxed">
+          <p className="text-sm md:text-base text-muted-foreground max-w-2xl font-medium leading-relaxed">
             Our multi-hub network ensures that no matter where you are, 
             premium service is just a heartbeat away.
           </p>

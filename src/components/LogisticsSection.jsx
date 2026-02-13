@@ -3,7 +3,7 @@
 import React, { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Package, Truck, Clock, MapPin, Instagram, ArrowRight } from "lucide-react";
+import { Package, Truck, Clock, MapPin, Instagram, ArrowRight, ShieldCheck, Box } from "lucide-react";
 import MagneticEffect from "./MagneticEffect";
 
 const LogisticsSection = () => {
@@ -13,101 +13,156 @@ const LogisticsSection = () => {
     offset: ["start end", "end start"]
   });
 
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1.2, 1]);
-  const opacity = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
-
-  const services = [
-    { icon: <Clock size={28} />, title: "Same-Day Delivery", desc: "Speed that keeps your business moving in real-time." },
-    { icon: <MapPin size={28} />, title: "Nationwide Reach", desc: "Reliable movement across all 36 states with safety focus." },
-    { icon: <Package size={28} />, title: "Secure Handling", desc: "Your items are treated with the utmost professional care." },
-    { icon: <Truck size={28} />, title: "E-Commerce", desc: "The logistics backbone for modern online entrepreneurs." },
+  const features = [
+    {
+      title: "Same-Day Delivery",
+      desc: "Speed that keeps your business moving in real-time.",
+      icon: <Clock className="w-6 h-6" />,
+      delay: 0.1
+    },
+    {
+      title: "Nationwide Reach",
+      desc: "Reliable movement across all 36 states with safety focus.",
+      icon: <MapPin className="w-6 h-6" />,
+      delay: 0.2
+    },
+    {
+      title: "Secure Handling",
+      desc: "Your items are treated with the utmost professional care.",
+      icon: <ShieldCheck className="w-6 h-6" />,
+      delay: 0.3
+    }
   ];
 
   return (
-    <section ref={containerRef} id="logistics" className="section-padding bg-slate-950 text-white overflow-hidden relative">
-      <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-white to-transparent dark:from-slate-950 opacity-10" />
-      
-      <div className="section-container">
-        <div className="grid grid-cols-1 lg:grid-cols-2 section-gap items-center">
-          
-          {/* Content side */}
-          <motion.div
-            style={{ opacity }}
-            className="flex flex-col gap-12 text-center lg:text-left items-center lg:items-start order-2 lg:order-1"
-          >
-            <div className="flex flex-col gap-6">
-              <span className="text-brand-orange font-black uppercase tracking-[0.3em] text-xs">
-                Logistics Excellence
+    <section ref={containerRef} id="logistics" className="section-padding relative bg-white dark:bg-slate-900 overflow-hidden">
+       {/* Background Decor - Mirrored from AutosSection */}
+       <div className="absolute top-0 left-0 w-1/3 h-full bg-slate-50 dark:bg-slate-800/20 skew-x-12 -translate-x-32 hidden lg:block" />
+
+      <div className="section-container relative z-10">
+        
+        {/* Header Block */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 mb-16 items-end">
+          <div className="lg:col-span-7">
+            <motion.h2 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-fluid-h2 text-slate-900 dark:text-white leading-tight"
+            >
+              Move It <span className="text-brand-orange italic font-serif">Fast</span>. <br/>
+              Move It <span className="text-brand-blue relative inline-block">
+                Safe.
+                 <svg className="absolute w-full h-3 -bottom-1 left-0 text-brand-blue/30" viewBox="0 0 100 10" preserveAspectRatio="none">
+                  <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="8" fill="none" />
+                </svg>
               </span>
-              <h2 className="text-fluid-h2 leading-tight">
-                Swift, Secure & <span className="text-brand-orange">Doorstep</span> Delivery
-              </h2>
-              <p className="text-slate-400 text-xl max-w-xl leading-relaxed">
-                Need to move packages? We’ve got you covered. From small parcels to bulk deliveries, 
-                we help you get your items to their destination quickly and safely.
+            </motion.h2>
+          </div>
+          <div className="lg:col-span-5">
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed"
+            >
+              Whether it's a single document or a fleet of trucks, we handle your logistics with military precision. 
+              Real-time updates, insured handling, and nationwide reach.
+            </motion.p>
+          </div>
+        </div>
+
+        {/* Bento Grid Layout - Matches AutosSection Structure */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 auto-rows-[minmax(180px,auto)]">
+          
+           {/* Feature List Column - Left Side (Mirrored or Same? Let's keep consistent flow: List on Right? No, user said SAME layout. Autos has Image Left, List Right. Let's start with Image Left) */}
+           {/* Wait, AutosSection had Image (col-span-2) and List (col-span-1). Let's use THAT exact grid. */}
+
+          {/* Main Feature Image - Large Card */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="md:col-span-2 md:row-span-2 relative rounded-[2.5rem] overflow-hidden group min-h-[400px]"
+          >
+            <Image
+              src="/fleet.png"
+              alt="Logistics Fleet"
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent" />
+            
+            <div className="absolute bottom-0 left-0 p-8 md:p-12 w-full">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="bg-brand-blue text-white p-3 rounded-2xl shadow-lg shadow-brand-blue/20">
+                  <Truck size={28} />
+                </div>
+                <span className="text-white font-bold text-xl tracking-tight">Express Fleet</span>
+              </div>
+              <p className="text-slate-200 text-sm md:text-base font-medium max-w-lg">
+                "Speed meets Safety." - Our commitment to getting your goods there on time, every time.
               </p>
             </div>
+          </motion.div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full text-left">
-              {services.map((item, idx) => (
-                <motion.div 
-                  key={idx} 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: idx * 0.1 }}
-                  className="flex flex-col gap-4 p-8 rounded-[2.5rem] bg-white/[0.03] border border-white/5 hover:bg-white/[0.08] transition-all group"
-                >
-                  <div className="text-brand-orange group-hover:scale-110 transition-transform origin-left">{item.icon}</div>
-                  <h3 className="font-black text-xl tracking-tight">{item.title}</h3>
-                  <p className="text-sm text-slate-400 leading-relaxed font-medium">{item.desc}</p>
-                </motion.div>
-              ))}
+          {/* Feature List Column */}
+          <div className="md:col-span-1 md:row-span-2 flex flex-col gap-6">
+            {features.map((feature, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: feature.delay }}
+                className="bg-slate-50 dark:bg-slate-800/50 p-6 rounded-[2rem] border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-xl hover:shadow-brand-orange/5 transition-all duration-300 group cursor-default flex-1 flex flex-col justify-center"
+              >
+                <div className="w-12 h-12 rounded-2xl bg-brand-orange/10 text-brand-orange flex items-center justify-center mb-4 group-hover:bg-brand-orange group-hover:text-white transition-colors duration-300">
+                  {feature.icon}
+                </div>
+                <h3 className="font-bold text-lg mb-2 text-slate-900 dark:text-white group-hover:text-brand-orange transition-colors">{feature.title}</h3>
+                <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{feature.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* CTA Banner - Bottom Full Width */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="md:col-span-3 bg-brand-orange rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8 group"
+          >
+            {/* Abstract Pattern */}
+            <div className="absolute top-0 right-0 w-full h-full opacity-10 pointer-events-none">
+                <div className="absolute -left-20 -bottom-40 w-96 h-96 bg-white rounded-full blur-3xl mix-blend-overlay" />
+            </div>
+
+            <div className="relative z-10 text-center md:text-left">
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">Package ready to go?</h3>
+              <p className="text-orange-50 font-medium">Book a pickup instantly via Instagram or Call.</p>
             </div>
 
             <MagneticEffect strength={0.3}>
-              <a
+              <a 
                 href="https://instagram.com/swifteeautos_logistics"
                 target="_blank"
                 rel="noopener noreferrer"
-                data-cursor="pointer"
-                className="group relative flex items-center justify-center gap-3 bg-brand-orange text-white px-12 py-6 rounded-[2rem] font-black text-lg shadow-2xl shadow-brand-orange/30 overflow-hidden"
+                className="relative z-10 bg-white text-brand-orange px-8 py-4 rounded-full font-bold text-lg shadow-lg flex items-center gap-3 hover:bg-slate-900 hover:text-white transition-all duration-300 group/btn"
               >
-                <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-                <span className="relative z-10 flex items-center gap-3 group-hover:text-brand-orange transition-colors">
-                  <Instagram size={24} /> Book a Delivery <ArrowRight className="group-hover:translate-x-2 transition-transform" />
-                </span>
+                <Instagram size={20} />
+                <span>Book Delivery</span>
+                <ArrowRight size={20} className="-ml-1 opacity-0 group-hover/btn:opacity-100 group-hover/btn:translate-x-1 transition-all" />
               </a>
             </MagneticEffect>
           </motion.div>
 
-          {/* Image side */}
-          <div className="relative order-1 lg:order-2">
-            <motion.div
-              style={{ scale }}
-              className="relative aspect-[4/5] md:aspect-square rounded-[4rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(245,130,32,0.15)]"
-            >
-              <Image
-                src="/fleet.png"
-                alt="Logistics Fleet"
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60" />
-              
-              <div className="absolute top-10 right-10 bg-brand-orange/90 backdrop-blur-xl text-white px-8 py-3 rounded-2xl font-black text-sm uppercase tracking-widest shadow-2xl border border-white/20">
-                Nationwide
-              </div>
-            </motion.div>
-            
-            {/* Decorative Vector */}
-            <div className="absolute -bottom-10 -left-10 w-40 h-40 border-8 border-brand-orange/20 rounded-full blur-2xl -z-10" />
-          </div>
         </div>
+
       </div>
     </section>
   );
 };
 
 export default LogisticsSection;
-
-

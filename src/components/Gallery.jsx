@@ -1,90 +1,128 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform, useSpring } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import MagneticEffect from "./MagneticEffect";
 
 const Gallery = () => {
-  const images = [
-    { src: "/hero_car.png", alt: "Toyota Corolla", category: "Classic Sedan" },
-    { src: "/hero_logistics.png", alt: "Logistics Expert", category: "Global Logistics" },
-    { src: "/showroom.png", alt: "Modern Showroom", category: "Premium Experience" },
-    { src: "/fleet.png", alt: "Logistics Fleet", category: "Heavy Hauling" },
-  ];
-
+  const containerRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  // Parallax transforms for columns (Desktop Only)
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, -200]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  const y3 = useTransform(scrollYProgress, [0, 1], [0, -150]);
+  
+  // Smooth spring physics
+  const springConfig = { stiffness: 100, damping: 30, bounce: 0 };
+  const smoothY1 = useSpring(y1, springConfig);
+  const smoothY2 = useSpring(y2, springConfig);
+  const smoothY3 = useSpring(y3, springConfig);
+
+  const galleryImages = [
+    // Column 1
+    [
+      { id: 1, src: "/hero_car.png", title: "Lexus LX 600", tag: "Luxury SUV" },
+      { id: 2, src: "/fleet.png", title: "Logistics Fleet", tag: "Global" },
+      { id: 3, src: "/lexus-landscape.png", title: "Executive Class", tag: "Premium" },
+    ],
+    // Column 2
+    [
+      { id: 4, src: "/showroom.png", title: "Experience Center", tag: "Showroom" },
+      { id: 5, src: "/delivery-swiftee.png", title: "Express Delivery", tag: "Logistics" },
+      { id: 6, src: "/lexus-2.png", title: "Toyota Prado", tag: "Off-Road" },
+    ],
+    // Column 3
+    [
+      { id: 7, src: "/lexus-2-night.png", title: "Night Stealth", tag: "Limited" },
+      { id: 8, src: "/hero_logistics.png", title: "Urban Logistics", tag: "City Wide" },
+      { id: 9, src: "/delivery-swiftee-customer.png", title: "Happy Clients", tag: "Trust" },
+    ]
+  ];
+
+  const allImages = galleryImages.flat();
+
   const handleSwipe = (direction) => {
-    if (currentIndex < images.length - 1) {
+    if (currentIndex < allImages.length - 1) {
       setCurrentIndex((prev) => prev + 1);
     } else {
-      setCurrentIndex(0); // Reset for infinite loop feel
+      setCurrentIndex(0); // Loop back
     }
   };
 
   return (
-    <section id="gallery" className="section-padding bg-slate-50 dark:bg-slate-950/40 selection:bg-brand-orange selection:text-white overflow-hidden">
-      <div className="section-container">
-        <div className="text-center mb-24 flex flex-col items-center">
-          <motion.span 
+    <section ref={containerRef} className="section-padding bg-slate-950 overflow-hidden relative min-h-screen flex flex-col justify-center">
+      
+      {/* Background Ambience */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-blue/10 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-brand-orange/10 rounded-full blur-[120px]" />
+      </div>
+
+      <div className="section-container relative z-10">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-20">
+          <motion.h2 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-fluid-h2 text-white leading-tight"
+          >
+            Captured <br/>
+            <span className="text-brand-orange italic font-serif">Excellence.</span>
+          </motion.h2>
+
+           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-brand-orange font-black uppercase tracking-[0.4em] text-xs mb-6"
+            transition={{ delay: 0.1 }}
+            className="text-slate-400 text-sm md:text-base max-w-sm text-right hidden lg:block"
           >
-            Visual Showcase
-          </motion.span>
-          <h2 className="text-fluid-h2 mb-8 leading-tight">Our <span className="text-brand-orange font-playfair italic font-normal">Cinematic</span> Gallery</h2>
-          <p className="text-muted-foreground text-xl max-w-2xl leading-relaxed">
-            A showcase of our clean, high-quality vehicles and commitment to excellence.
-          </p>
+            A visual journey through our premium inventory and logistics operations.
+          </motion.p>
         </div>
 
-        {/* Mobile Tinder Stack */}
-        <div className="relative h-[500px] w-full max-w-[400px] mx-auto md:hidden">
-          <AnimatePresence>
-            {images.map((img, idx) => {
-              if (idx < currentIndex) return null;
+        {/* 1. Mobile Tinder Stack (< 500px) */}
+        <div className="block min-[500px]:hidden relative h-[500px] w-full max-w-[340px] mx-auto">
+          <AnimatePresence mode="popLayout">
+            {allImages.map((img, idx) => {
+              if (idx < currentIndex || idx > currentIndex + 3) return null;
               const isTop = idx === currentIndex;
+              const position = idx - currentIndex;
               
               return (
                 <motion.div
-                  key={idx}
-                  style={{ zIndex: images.length - idx }}
-                  initial={{ scale: 0.9, opacity: 0, y: 20 }}
+                  key={img.id}
+                  style={{ zIndex: allImages.length - idx }}
+                  initial={{ scale: 0.8, opacity: 0, y: 60 }}
                   animate={{ 
-                    scale: 1 - (idx - currentIndex) * 0.05,
-                    opacity: 1 - (idx - currentIndex) * 0.2,
-                    y: (idx - currentIndex) * 10,
+                    scale: 1 - position * 0.05,
+                    opacity: 1 - position * 0.15,
+                    y: position * -15, // Peek out at the top
+                    x: position * (position % 2 === 0 ? 8 : -8), // Peek out at the sides
+                    rotate: isTop ? 0 : position === 1 ? -4 : position === 2 ? 4 : -2,
                   }}
-                  exit={{ x: 300, opacity: 0, rotate: 20 }}
+                  exit={{ x: 500, opacity: 0, rotate: 45, transition: { duration: 0.3 } }}
                   drag={isTop ? "x" : false}
                   dragConstraints={{ left: 0, right: 0 }}
                   onDragEnd={(e, { offset, velocity }) => {
-                    if (offset.x > 100 || velocity.x > 500) handleSwipe("right");
-                    else if (offset.x < -100 || velocity.x < -500) handleSwipe("left");
+                    if (Math.abs(offset.x) > 100 || Math.abs(velocity.x) > 500) handleSwipe();
                   }}
-                  className="absolute inset-0"
+                  className="absolute inset-0 cursor-grab active:cursor-grabbing p-4"
                 >
-                  <div className="w-full h-full relative rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white dark:border-slate-800 bg-slate-900 group">
-                    <Image
-                      src={img.src}
-                      alt={img.alt}
-                      fill
-                      className="object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-8">
-                      <span className="text-brand-orange text-xs font-black uppercase tracking-[0.2em] mb-2">{img.category}</span>
-                      <h3 className="text-white text-2xl font-black tracking-tight">{img.alt}</h3>
-                    </div>
-                  </div>
+                  <GalleryCard img={img} isMobile />
                 </motion.div>
               );
             })}
           </AnimatePresence>
-          {currentIndex === images.length && (
+          {currentIndex === allImages.length && (
              <motion.button
                initial={{ opacity: 0 }}
                animate={{ opacity: 1 }}
@@ -96,45 +134,71 @@ const Gallery = () => {
           )}
         </div>
 
-        {/* Desktop Grid */}
-        <div className="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-8 h-auto lg:h-[700px]">
-          {images.map((img, idx) => (
-            <div key={idx} className={cn(
-              "h-80 lg:h-full transition-all duration-700 hover:scale-[1.02]",
-              idx === 0 ? "col-span-2 lg:col-span-2 lg:row-span-2" : "col-span-1",
-              idx === 2 ? "lg:row-span-2" : "",
-              idx === 3 ? "col-span-1" : ""
-            )}>
-              <MagneticEffect strength={0.1} className="w-full h-full">
-                <motion.div
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1, duration: 0.8 }}
-                  className="relative h-full w-full rounded-[2.5rem] overflow-hidden shadow-2xl border-[12px] border-white dark:border-slate-800 group"
-                >
-                  <Image
-                    src={img.src}
-                    alt={img.alt}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-[2000ms] ease-out"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700 flex flex-col justify-end p-10">
-                    <span className="text-brand-orange text-xs font-black uppercase tracking-[0.2em] mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-700 delay-100">{img.category}</span>
-                    <h3 className="text-white text-2xl font-black tracking-tight transform translate-y-4 group-hover:translate-y-0 transition-transform duration-700 delay-200">{img.alt}</h3>
-                  </div>
-                </motion.div>
-              </MagneticEffect>
+        {/* 2. Tablet Horizontal Scroll (500px to < md) - Hidden Scrollbar */}
+        <div className="hidden min-[500px]:flex md:hidden overflow-x-auto gap-6 pb-12 scrollbar-hide snap-x snap-mandatory px-4 -mx-4">
+          {allImages.map((img, idx) => (
+            <div key={img.id} className="min-w-[70vw] snap-center h-[500px]">
+              <GalleryCard img={img} isMobile />
             </div>
           ))}
         </div>
+
+        {/* 3. Desktop Parallax Grid (>= md) */}
+        <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-6 h-[600px] lg:h-[800px] overflow-hidden rounded-[3rem] bg-slate-900/50 border border-white/5 p-6 relative">
+          <motion.div style={{ y: smoothY1 }} className="flex flex-col gap-6">
+            {galleryImages[0].map((img, idx) => (
+              <GalleryCard key={img.id} img={img} />
+            ))}
+          </motion.div>
+
+          <motion.div style={{ y: smoothY2 }} className="flex flex-col gap-6">
+             {galleryImages[1].map((img, idx) => (
+              <GalleryCard key={img.id} img={img} />
+            ))}
+          </motion.div>
+
+           <motion.div style={{ y: smoothY3 }} className="flex flex-col gap-6 hidden lg:flex">
+             {galleryImages[2].map((img, idx) => (
+              <GalleryCard key={img.id} img={img} />
+            ))}
+          </motion.div>
+
+          <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-slate-950 via-transparent to-slate-950 z-20" />
+        </div>
+
       </div>
     </section>
   );
 };
 
-
+const GalleryCard = ({ img, isMobile }) => {
+  return (
+    <div className="relative aspect-[3/4] h-full w-full rounded-[2.5rem] overflow-hidden group cursor-pointer md:cursor-none border border-white/5">
+      <Image
+        src={img.src}
+        alt={img.title}
+        fill
+        className="object-cover transition-transform duration-700 md:group-hover:scale-105"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 lg:opacity-60 lg:group-hover:opacity-40 transition-opacity duration-500" />
+      
+      <div className={cn(
+        "absolute inset-0 p-8 flex flex-col justify-end transition-all duration-500",
+        isMobile ? "opacity-100" : "lg:opacity-0 lg:group-hover:opacity-100"
+      )}>
+        <div className={cn(
+          "transition-transform duration-500",
+          !isMobile && "lg:translate-y-4 lg:group-hover:translate-y-0"
+        )}>
+          <span className="text-brand-orange text-xs font-bold uppercase tracking-widest mb-2 block">{img.tag}</span>
+          <h3 className="text-white text-2xl font-bold flex items-center justify-between">
+            {img.title}
+            <ArrowUpRight className="w-6 h-6 text-brand-orange" />
+          </h3>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default Gallery;
-
-

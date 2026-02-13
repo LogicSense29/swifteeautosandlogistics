@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import FeaturedCars from "@/components/FeaturedCars";
 import About from "@/components/About";
 import AutosSection from "@/components/AutosSection";
 import LogisticsSection from "@/components/LogisticsSection";
@@ -19,13 +20,14 @@ export default function Home() {
     <main className="min-h-screen">
       <Navbar />
       <Hero />
+      <FeaturedCars />
       <About />
-      <AutosSection />
+      {/* <AutosSection />
       <TrustSection />
       <LogisticsSection />
       <Gallery />
       <Testimonials />
-      <ServiceAreas />
+      <ServiceAreas /> */}
       <Footer />
     </main>
   );

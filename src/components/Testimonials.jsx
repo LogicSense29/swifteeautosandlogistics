@@ -1,107 +1,150 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useRef, useState, useEffect } from "react";
+import Image from "next/image";
+import { motion, useAnimation } from "framer-motion";
 import { Star, Quote } from "lucide-react";
 import { cn } from "@/lib/utils";
 import MagneticEffect from "./MagneticEffect";
 
 const Testimonials = () => {
   const reviews = [
-    {
-      name: "Samuel O.",
-      location: "Lagos",
-      text: "I bought my Toyota Corolla from Swiftee Autos and the experience was smooth from start to finish. No stories. The car was delivered to my doorstep in perfect condition.",
-      type: "Autos"
-    },
-    {
-      name: "Joy I.",
-      location: "Abeokuta",
-      text: "Swiftee Autos made buying my first car stress-free. They showed me full inspection videos and handled documentation. Very honest and professional service.",
-      type: "Autos"
-    },
-    {
-      name: "Adeyemi T.",
-      location: "Oyo State",
-      text: "They’ve helped me move items from Lagos to Ibadan multiple times. Zero damage, zero delay. Swiftee Logistics is simply the best.",
-      type: "Logistics"
-    }
+    { id: 1, name: "Samuel O.", location: "Lagos", text: "I bought my Toyota Corolla from Swiftee Autos and the experience was smooth from start to finish. No stories.", type: "Autos" },
+    { id: 2, name: "Joy I.", location: "Abeokuta", text: "Swiftee Autos made buying my first car stress-free. Very honest and professional service.", type: "Autos" },
+    { id: 3, name: "Adeyemi T.", location: "Oyo State", text: "They’ve helped me move items multiple times. Zero damage, zero delay. Swiftee Logistics is the best.", type: "Logistics" },
+    { id: 4, name: "Chukwuma E.", location: "Enugu", text: "The Lexus LX 600 I got is a beast. Swiftee Autos is the most reliable dealership I've dealt with.", type: "Autos" },
+    { id: 5, name: "Bisi A.", location: "Abuja", text: "Super fast delivery! I was worried about moving my furniture, but the Swiftee team handled everything.", type: "Logistics" },
+    { id: 6, name: "Daniel K.", location: "Port Harcourt", text: "Professionalism at its peak. The tracking system for my vehicle delivery was accurate.", type: "Logistics" }
   ];
 
+  // Doubling content for seamless loop
+  const displayReviews = [...reviews, ...reviews, ...reviews];
+
   return (
-    <section id="reviews" className="py-32 bg-white dark:bg-slate-950 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-20 gap-10 text-center lg:text-left items-center lg:items-start">
-          <div className="max-w-2xl">
-            <motion.span 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-brand-blue font-black uppercase tracking-[0.4em] text-xs mb-6 inline-block"
-            >
-              Social Proof
-            </motion.span>
-            <h2 className="text-fluid-h2 mb-8 leading-tight">What Our <span className="text-brand-blue">Customers</span> Are Saying</h2>
-            <p className="text-muted-foreground text-xl leading-relaxed">
-              Reliability is our culture. Join thousands of satisfied customers who trust Swiftee.
-            </p>
-          </div>
-          <motion.div 
-            initial={{ scale: 0.9, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
+    <section id="reviews" className="section-padding bg-slate-950 overflow-hidden relative">
+      
+      {/* Background Ambience */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-brand-blue/5 rounded-full blur-[160px]" />
+      </div>
+
+      <div className="section-container relative z-10">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-16 px-4">
+          <motion.h2 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="flex items-center gap-3 bg-brand-orange/5 px-8 py-5 rounded-[2rem] border border-brand-orange/10 shadow-3xl shadow-brand-orange/5"
+            className="text-fluid-h2 text-white leading-tight"
           >
+            Trusted by <br/>
+            <span className="text-brand-orange italic font-serif">Thousands.</span>
+          </motion.h2>
+
+          <div className="hidden lg:flex items-center gap-6 bg-white/[0.03] backdrop-blur-md border border-white/5 px-8 py-4 rounded-[2rem]">
             <div className="flex gap-1">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} size={24} className="fill-brand-orange text-brand-orange" />
+                <Star key={i} size={18} className="fill-brand-orange text-brand-orange" />
               ))}
             </div>
-            <span className="ml-2 font-black text-xl">5.0 Brand Rating</span>
-          </motion.div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {reviews.map((review, idx) => (
-            <MagneticEffect key={idx} strength={0.15}>
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95, y: 30 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1, type: "spring", stiffness: 80 }}
-                data-cursor="pointer"
-                className="bg-slate-50 dark:bg-white/[0.03] p-12 rounded-[3rem] relative overflow-hidden group border border-transparent hover:border-brand-blue/20 transition-all duration-700 flex flex-col h-full shadow-2xl shadow-black/5"
-              >
-                <Quote className="absolute top-10 right-10 text-brand-blue/5 group-hover:text-brand-blue/10 transition-colors duration-700" size={100} />
-                
-                <div className="flex gap-1 mb-8">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={20} className="fill-brand-orange text-brand-orange" />
-                  ))}
-                </div>
-
-                <p className="text-foreground/90 leading-relaxed mb-12 text-xl relative z-10 flex-grow italic font-medium">
-                  "{review.text}"
-                </p>
-
-                <div className="mt-auto pt-10 border-t border-slate-200 dark:border-white/10 flex items-center justify-between">
-                  <div className="flex flex-col gap-1">
-                    <h4 className="font-black text-xl tracking-tight">{review.name}</h4>
-                    <p className="text-sm font-bold text-muted-foreground uppercase tracking-widest">{review.location}</p>
-                  </div>
-                  <span className={cn(
-                    "text-[10px] uppercase tracking-[0.2em] font-black px-4 py-2 rounded-full shadow-lg",
-                    review.type === "Autos" ? "bg-brand-blue text-white" : "bg-brand-orange text-white"
-                  )}>
-                    {review.type}
-                  </span>
-                </div>
-              </motion.div>
-            </MagneticEffect>
-          ))}
+            <span className="text-white/60 font-bold uppercase tracking-tighter text-sm">5.0 Customer Rating</span>
+          </div>
         </div>
       </div>
+
+      <div className="flex flex-col gap-6 md:gap-10">
+        <MarqueeRow items={displayReviews} direction="left" speed={80} />
+        <MarqueeRow items={[...displayReviews].reverse()} direction="right" speed={70} />
+      </div>
+
+      <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-slate-950 to-transparent z-20 pointer-events-none" />
+      <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-slate-950 to-transparent z-20 pointer-events-none" />
     </section>
+  );
+};
+
+const MarqueeRow = ({ items, direction, speed }) => {
+  const controls = useAnimation();
+  const [isInteracting, setIsInteracting] = useState(false);
+  const timerRef = useRef(null);
+
+  useEffect(() => {
+    if (!isInteracting) {
+      controls.start({
+        x: direction === "left" ? [0, -2000] : [-2000, 0],
+        transition: {
+          duration: speed,
+          repeat: Infinity,
+          ease: "linear",
+        }
+      });
+    } else {
+      controls.stop();
+    }
+  }, [isInteracting, controls, direction, speed]);
+
+  const handleInteraction = () => {
+    setIsInteracting(true);
+    if (timerRef.current) clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => {
+      setIsInteracting(false);
+      timerRef.current = null;
+    }, 5000); // Resume after 5s
+  };
+
+  return (
+    <div 
+      className="flex overflow-hidden cursor-grab active:cursor-grabbing"
+      onMouseEnter={() => setIsInteracting(true)}
+      onMouseLeave={() => {
+        // Only resume if we aren't in the middle of a click-pause
+        if (!timerRef.current) setIsInteracting(false);
+      }}
+      onMouseDown={handleInteraction}
+      onTouchStart={handleInteraction}
+    >
+      <motion.div 
+        drag="x"
+        dragConstraints={{ left: -3000, right: 0 }}
+        dragElastic={0.05}
+        animate={controls}
+        className="flex gap-6 md:gap-8 whitespace-nowrap px-4"
+      >
+        {items.map((review, idx) => (
+          <TestimonialCard key={idx} review={review} />
+        ))}
+      </motion.div>
+    </div>
+  );
+};
+
+const TestimonialCard = ({ review }) => {
+  return (
+    <div className="min-w-[320px] md:min-w-[450px] bg-white/[0.02] backdrop-blur-xl border border-white/5 p-8 md:p-10 rounded-[3rem] relative group hover:bg-white/[0.05] transition-all duration-500">
+      <Quote className="absolute top-8 right-10 text-brand-orange/10 group-hover:text-brand-orange/20 transition-colors duration-500" size={60} />
+      
+      <div className="flex gap-1 mb-6">
+        {[...Array(5)].map((_, i) => (
+          <Star key={i} size={14} className="fill-brand-orange text-brand-orange" />
+        ))}
+      </div>
+
+      <p className="text-white/80 text-sm md:text-base font-medium leading-relaxed mb-8 whitespace-normal italic">
+        "{review.text}"
+      </p>
+
+      <div className="flex items-center justify-between pt-6 border-t border-white/5">
+        <div>
+          <h4 className="text-white font-bold text-lg">{review.name}</h4>
+          <p className="text-white/40 text-xs font-bold uppercase tracking-widest">{review.location}</p>
+        </div>
+        <span className={cn(
+          "px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-tighter shadow-lg",
+          review.type === "Autos" ? "bg-brand-blue text-white" : "bg-brand-orange text-white"
+        )}>
+          {review.type}
+        </span>
+      </div>
+    </div>
   );
 };
 

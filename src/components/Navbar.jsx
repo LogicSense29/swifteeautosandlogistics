@@ -104,14 +104,14 @@ const Navbar = () => {
         {/* Mobile Menu Toggle */}
         <button
           className={cn(
-            "md:hidden p-3 rounded-xl transition-all duration-500 active:scale-90",
+            "md:hidden p-2 rounded-xl transition-all duration-500 active:scale-90",
             isScrolled 
               ? "text-foreground hover:bg-slate-100 dark:hover:bg-slate-800" 
               : "bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20"
           )}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
 
@@ -137,10 +137,10 @@ const Navbar = () => {
                 />
               </div>
               <button
-                className="p-3 text-foreground"
+                className="p-2 text-foreground"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                <X size={32} />
+                <X size={24} />
               </button>
             </div>
 

@@ -45,6 +45,12 @@ body {
   overflow-x: hidden;
 }
 
+  /* Magnetic Effect */
+  .magnetic-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+
   /* Awwwards Polish: Global Noise Texture */
   .noise-overlay {
     position: fixed;
@@ -75,7 +81,7 @@ body {
 
   /* Fluid Typography - Refined for better mobile scaling */
   .text-fluid-h1 {
-    font-size: clamp(3rem, 4vw + 1rem, 5rem);
+    font-size: clamp(3.5rem, 5vw + 1rem, 6rem);
     line-height: 1.0;
     letter-spacing: -0.04em;
     font-weight: 800;
@@ -122,8 +128,29 @@ body {
   @apply items-center lg:items-start;
 }
 
+/* Hide scrollbar but keep functionality */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 .mobile-justify-center {
   @apply justify-center lg:justify-start;
+}
+
+/* Scrollbar Hide Utility */
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
 }
 
 
