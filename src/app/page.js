@@ -22,12 +22,12 @@ export default function Home() {
       <Hero />
       <FeaturedCars />
       <About />
-      {/* <AutosSection />
+      <AutosSection />
       <TrustSection />
       <LogisticsSection />
       <Gallery />
       <Testimonials />
-      <ServiceAreas /> */}
+      <ServiceAreas />
       <Footer />
     </main>
   );

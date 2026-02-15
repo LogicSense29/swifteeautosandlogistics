@@ -39,9 +39,9 @@ const ServiceAreas = () => {
           </motion.div> */}
 
           <h2 className="text-fluid-h2 mb-6 max-w-4xl leading-tight">
-            Where We <span className="text-brand-orange font-playfair italic font-normal">Connect</span> With You
+            Where We <span className="text-brand-orange">Connect</span> With You
           </h2>
-          <p className="text-sm md:text-base text-muted-foreground max-w-2xl font-medium leading-relaxed">
+          <p className="text-base md:text-lg text-muted-foreground max-w-2xl font-medium leading-relaxed">
             Our multi-hub network ensures that no matter where you are, 
             premium service is just a heartbeat away.
           </p>
@@ -131,7 +131,7 @@ const ServiceAreas = () => {
                           <p className="text-[10px] font-black uppercase tracking-widest text-brand-blue dark:text-brand-blue/60 mt-1">Core Station</p>
                         </div>
                       </div>
-                      <p className="text-sm font-semibold text-muted-foreground border-t border-slate-100 dark:border-white/5 pt-3">{hub.info}</p>
+                      <p className="text-base font-semibold text-muted-foreground border-t border-slate-100 dark:border-white/5 pt-3">{hub.info}</p>
                     </div>
                   </div>
                 </div>

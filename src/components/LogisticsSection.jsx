@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Package, Truck, Clock, MapPin, Instagram, ArrowRight, ShieldCheck, Box } from "lucide-react";
 import MagneticEffect from "./MagneticEffect";
+import deliveryPicture from '../assets/delivery-bus.png'
 
 const LogisticsSection = () => {
   const containerRef = useRef(null);
@@ -50,7 +51,7 @@ const LogisticsSection = () => {
               viewport={{ once: true }}
               className="text-fluid-h2 text-slate-900 dark:text-white leading-tight"
             >
-              Move It <span className="text-brand-orange italic font-serif">Fast</span>. <br/>
+              Move It <span className="text-brand-orange">Fast</span>. <br/>
               Move It <span className="text-brand-blue relative inline-block">
                 Safe.
                  <svg className="absolute w-full h-3 -bottom-1 left-0 text-brand-blue/30" viewBox="0 0 100 10" preserveAspectRatio="none">
@@ -65,7 +66,7 @@ const LogisticsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed"
+              className="text-base md:text-lg text-slate-600 dark:text-slate-300 leading-relaxed"
             >
               Whether it's a single document or a fleet of trucks, we handle your logistics with military precision. 
               Real-time updates, insured handling, and nationwide reach.
@@ -87,7 +88,7 @@ const LogisticsSection = () => {
             className="md:col-span-2 md:row-span-2 relative rounded-[2.5rem] overflow-hidden group min-h-[400px]"
           >
             <Image
-              src="/fleet.png"
+              src={deliveryPicture}
               alt="Logistics Fleet"
               fill
               className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -101,7 +102,7 @@ const LogisticsSection = () => {
                 </div>
                 <span className="text-white font-bold text-xl tracking-tight">Express Fleet</span>
               </div>
-              <p className="text-slate-200 text-sm md:text-base font-medium max-w-lg">
+              <p className="text-slate-200 text-base md:text-lg font-medium max-w-lg">
                 "Speed meets Safety." - Our commitment to getting your goods there on time, every time.
               </p>
             </div>
@@ -122,7 +123,7 @@ const LogisticsSection = () => {
                   {feature.icon}
                 </div>
                 <h3 className="font-bold text-lg mb-2 text-slate-900 dark:text-white group-hover:text-brand-orange transition-colors">{feature.title}</h3>
-                <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{feature.desc}</p>
+                <p className="text-base md:text-lg text-slate-500 dark:text-slate-400 leading-relaxed">{feature.desc}</p>
               </motion.div>
             ))}
           </div>

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { CheckCircle2, Car, Phone, ShieldCheck, ArrowRight, Star } from "lucide-react";
 import MagneticEffect from "./MagneticEffect";
+import autoPicture from '../assets/lexus-2.png'
 
 const AutosSection = () => {
   const containerRef = useRef(null);
@@ -76,7 +77,7 @@ const AutosSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed"
+              className="text-base md:text-lg text-slate-600 dark:text-slate-300 leading-relaxed"
             >
               At Swiftee Autos, we don't just sell cars; we deliver confidence. 
               Every vehicle in our inventory passes a rigorous 150-point inspection 
@@ -96,7 +97,7 @@ const AutosSection = () => {
             className="md:col-span-2 md:row-span-2 relative rounded-[2.5rem] overflow-hidden group min-h-[400px]"
           >
             <Image
-              src="/showroom.png"
+              src={autoPicture}
               alt="Premium Car Showroom"
               fill
               className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -110,7 +111,7 @@ const AutosSection = () => {
                 </div>
                 <span className="text-white font-bold text-xl tracking-tight">Swiftee Certified</span>
               </div>
-              <p className="text-slate-200 text-sm md:text-base font-medium max-w-lg">
+              <p className="text-slate-200 text-base md:text-lg font-medium max-w-lg">
                 "No stories. Just clean cars." - Our promise to you for every single vehicle.
               </p>
             </div>
@@ -131,7 +132,7 @@ const AutosSection = () => {
                   {feature.icon}
                 </div>
                 <h3 className="font-bold text-lg mb-2 text-slate-900 dark:text-white group-hover:text-brand-blue transition-colors">{feature.title}</h3>
-                <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{feature.desc}</p>
+                <p className="text-base md:text-lg text-slate-500 dark:text-slate-400 leading-relaxed">{feature.desc}</p>
               </motion.div>
             ))}
           </div>

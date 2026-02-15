@@ -28,7 +28,7 @@ const Hero = () => {
   const slides = [
     {
       id: 1,
-      image: lexusLandscape,
+      image: lexusLandscape3,
       position: "object-center",
       title: "Drive Your",
       highlight: "Dream",
@@ -79,31 +79,27 @@ const Hero = () => {
 
   const slideVariants = {
     initial: (direction) => ({
-      x: direction > 0 ? "100%" : "-100%",
-      scale: 1.2,
       opacity: 0,
+      scale: 1.1,
     }),
     animate: {
-      x: 0,
-      scale: 1,
       opacity: 1,
+      scale: 1,
       transition: {
-        x: { type: "spring", stiffness: 300, damping: 30 },
-        scale: { duration: 1.5, ease: "easeOut" }, 
-        opacity: { duration: 0.5 }
+        opacity: { duration: 1.2, ease: "easeInOut" },
+        scale: { duration: 2.0, ease: "easeOut" }, // Subtle zoom
       },
     },
     exit: (direction) => ({
-      x: direction > 0 ? "-20%" : "20%",
       opacity: 0,
-      transition: { duration: 0.5 },
+      transition: { duration: 0.8, ease: "easeInOut" },
     }),
   };
 
   const textVariants = {
-    initial: { y: 50, opacity: 0 },
+    initial: { y: 30, opacity: 0 }, // Reduced from 50
     animate: { y: 0, opacity: 1, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } },
-    exit: { y: -50, opacity: 0, transition: { duration: 0.4 } },
+    exit: { y: -20, opacity: 0, transition: { duration: 0.4 } }, // Reduced from -50
   };
 
   return (
@@ -178,7 +174,7 @@ const Hero = () => {
                 variants={textVariants}
                 initial="initial" animate="animate" exit="exit"
                 transition={{ delay: 0.3 }}
-                className="text-base text-slate-200 mb-10 px-10 md:px-0 md:max-w-sm leading-relaxed font-light"
+                className="text-base md:text-lg text-slate-200 mb-10 px-10 md:px-0 md:max-w-sm leading-relaxed font-light"
               >
                 {slides[currentIndex].desc}
               </motion.p>

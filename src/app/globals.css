@@ -43,6 +43,7 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
   overflow-x: hidden;
+  @apply text-base md:text-lg leading-relaxed font-medium;
 }
 
   /* Magnetic Effect */

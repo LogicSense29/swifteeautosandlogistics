@@ -38,9 +38,9 @@ const Footer = () => {
             {/* <span className="block text-brand-orange font-bold tracking-widest uppercase text-xs mb-4">
               Next Steps
             </span> */}
-            <h2 className="text-5xl md:text-8xl font-playfair font-black leading-[0.9]">
+            <h2 className="text-5xl md:text-8xl font-black leading-[0.9]">
               Ready to <br/>
-              <span className="italic font-light text-slate-500">upgrade?</span>
+              <span className="text-slate-500">upgrade?</span>
             </h2>
           </div>
 
@@ -72,7 +72,7 @@ const Footer = () => {
                   className="object-contain brightness-0 invert"
                 />
               </Link>
-              <p className="text-xl md:text-2xl text-slate-400 font-light leading-relaxed max-w-md">
+              <p className="text-base md:text-lg text-slate-400 font-medium leading-relaxed max-w-md">
                 Redefining automotive luxury and logistics with absolute <span className="text-white font-medium">transparency</span> and speed.
               </p>
             </div>

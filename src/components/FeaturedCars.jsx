@@ -117,7 +117,7 @@ const FeaturedCars = () => {
               </div>
               
               {/* Scroll Hint */}
-              <div className="hidden md:flex items-center gap-2 text-white/50 text-sm font-medium">
+              <div className="hidden md:flex items-center gap-2 text-white/50 text-base font-medium">
                 <span className="animate-pulse">Scroll to explore</span>
                 <ArrowRight size={16} />
               </div>
@@ -157,7 +157,7 @@ const FeaturedCars = () => {
                         <h3 className="text-lg md:text-xl font-black text-slate-900 dark:text-white mb-1">
                           {car.name}
                         </h3>
-                        <p className="text-[10px] md:text-xs text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider">
+                        <p className="text-sm md:text-base text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider">
                           {car.year} Model
                         </p>
                       </div>
@@ -168,7 +168,7 @@ const FeaturedCars = () => {
                       </div>
 
                       {/* Specs */}
-                      <div className="flex items-center justify-between mb-4 md:mb-6 text-[10px] md:text-xs">
+                      <div className="flex items-center justify-between mb-4 md:mb-6 text-sm md:text-base">
                         <div className="flex items-center gap-1 md:gap-1.5">
                           <Gauge size={14} className="text-slate-400" />
                           <span className="text-slate-600 dark:text-slate-400">{car.mileage}</span>
@@ -222,7 +222,7 @@ const FeaturedCars = () => {
             href="https://instagram.com/swifteeautos_logistics"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-8 py-4 border-2 border-slate-300 dark:border-white/30 text-slate-900 dark:text-white rounded-[2rem] font-bold text-sm md:text-base hover:bg-slate-900 hover:dark:bg-white hover:text-white hover:dark:text-slate-950 hover:border-slate-900 hover:dark:border-white transition-all duration-300"
+            className="inline-flex items-center gap-3 px-8 py-4 border-2 border-slate-300 dark:border-white/30 text-slate-900 dark:text-white rounded-[2rem] font-bold text-base md:text-lg hover:bg-slate-900 hover:dark:bg-white hover:text-white hover:dark:text-slate-950 hover:border-slate-900 hover:dark:border-white transition-all duration-300"
           >
             View Full Inventory
             <ArrowRight size={20} />

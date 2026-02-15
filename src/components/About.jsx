@@ -46,7 +46,7 @@ const About = () => {
             viewport={{ once: true }}
             className="text-3xl md:text-5xl mb-6 md:mb-10 leading-tight font-black"
           >
-            Redefining <span className="text-brand-blue font-playfair italic font-normal tracking-tight">Luxury</span> & Efficiency in Nigeria
+            Redefining <span className="text-brand-blue tracking-tight">Luxury</span> & Efficiency in Nigeria
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -63,7 +63,7 @@ const About = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
           {features.map((feature, idx) => (
-            <MagneticEffect key={idx} strength={0.2}>
+            <MagneticEffect key={idx} strength={0.2} className="h-full">
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -73,7 +73,7 @@ const About = () => {
                   y: idx === 1 ? 40 : 0 // Stagger middle card
                 }}
                 data-cursor="pointer"
-                className="relative bg-white dark:bg-white/[0.03] p-10 rounded-[3.5rem] shadow-3xl shadow-black/5 border border-slate-100 dark:border-white/10 overflow-hidden group transition-all duration-700"
+                className="relative bg-white dark:bg-white/[0.03] p-10 rounded-[3.5rem] shadow-3xl shadow-black/5 border border-slate-100 dark:border-white/10 overflow-hidden group transition-all duration-700 h-full flex flex-col"
               >
                 {/* Reveal Background Shape */}
                 <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-brand-blue/5 rounded-full group-hover:scale-[3] transition-transform duration-1000 ease-out" />
@@ -87,7 +87,7 @@ const About = () => {
                   </div>
                   
                   <h3 className="text-2xl font-black mb-4 tracking-tight group-hover:text-brand-blue transition-colors duration-500">{feature.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed text-base md:text-lg font-medium group-hover:text-foreground transition-colors duration-500">
+                  <p className="text-muted-foreground leading-relaxed text-base md:text-lg font-medium group-hover:text-foreground transition-colors duration-500 flex-grow">
                     {feature.desc}
                   </p>
                   

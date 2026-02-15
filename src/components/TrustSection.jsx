@@ -86,14 +86,14 @@ const TrustSection = () => {
             transition={{ delay: 0.1 }}
             className="text-fluid-h2 font-medium tracking-tight mb-6"
           >
-            Built on <span className="font-serif italic text-brand-blue">Transparency</span>, <br />
+            Built on <span className="text-brand-blue">Transparency</span>, <br />
             Driven by <span className="text-brand-orange">Excellence</span>.
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-slate-400 text-sm md:text-base leading-relaxed"
+            className="text-slate-400 text-base md:text-lg leading-relaxed"
           >
             We've redefined the standards of car sales and logistics in Nigeria. 
             No cutting corners, just premium service delivery.
@@ -123,7 +123,7 @@ const TrustSection = () => {
                   <h3 className="text-xl font-bold mb-3 text-white group-hover:text-brand-orange transition-colors duration-300">
                     {item.title}
                   </h3>
-                  <p className="text-slate-400 text-sm leading-relaxed font-medium group-hover:text-slate-300 transition-colors">
+                  <p className="text-slate-400 text-base md:text-lg leading-relaxed font-medium group-hover:text-slate-300 transition-colors">
                     {item.desc}
                   </p>
                 </div>

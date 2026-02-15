@@ -75,7 +75,7 @@ const Gallery = () => {
             className="text-fluid-h2 text-white leading-tight"
           >
             Captured <br/>
-            <span className="text-brand-orange italic font-serif">Excellence.</span>
+            <span className="text-brand-orange">Excellence.</span>
           </motion.h2>
 
            <motion.p 
@@ -83,7 +83,7 @@ const Gallery = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-slate-400 text-sm md:text-base max-w-sm text-right hidden lg:block"
+            className="text-slate-400 text-base md:text-lg max-w-sm text-right hidden lg:block"
           >
             A visual journey through our premium inventory and logistics operations.
           </motion.p>

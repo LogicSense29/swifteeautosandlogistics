@@ -37,7 +37,7 @@ const Testimonials = () => {
             className="text-fluid-h2 text-white leading-tight"
           >
             Trusted by <br/>
-            <span className="text-brand-orange italic font-serif">Thousands.</span>
+            <span className="text-brand-orange">Thousands.</span>
           </motion.h2>
 
           <div className="hidden lg:flex items-center gap-6 bg-white/[0.03] backdrop-blur-md border border-white/5 px-8 py-4 rounded-[2rem]">
@@ -128,7 +128,7 @@ const TestimonialCard = ({ review }) => {
         ))}
       </div>
 
-      <p className="text-white/80 text-sm md:text-base font-medium leading-relaxed mb-8 whitespace-normal italic">
+      <p className="text-white/80 text-base md:text-lg font-medium leading-relaxed mb-8 whitespace-normal italic">
         "{review.text}"
       </p>
 
