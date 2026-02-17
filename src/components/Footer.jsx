@@ -19,7 +19,7 @@ const Footer = () => {
     ]},
     { title: "Connect", links: [
       { name: "Instagram", href: "https://instagram.com/swifteeautos_logistics", external: true },
-      { name: "WhatsApp", href: "https://wa.me/2349039634446", external: true },
+      { name: "WhatsApp", href: "https://wa.me/2348148811470", external: true },
       { name: "Email Us", href: "mailto:info@swifteeautos.com", external: true },
     ]}
   ];

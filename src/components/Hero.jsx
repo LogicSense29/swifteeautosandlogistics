@@ -187,7 +187,7 @@ const Hero = () => {
                 className="flex flex-col md:flex-row gap-4 items-center md:items-start justify-center md:justify-start"
               >
                 <MagneticEffect strength={0.4}>
-                  <a href="tel:+2349039634446" className="group relative px-5 py-3 md:px-6 md:py-3 bg-brand-blue text-white rounded-full font-semibold text-base md:text-lg overflow-hidden flex items-center justify-center gap-2 md:gap-3 w-[200px] md:w-auto">
+                  <a href="tel:+2348148811470" className="group relative px-5 py-3 md:px-6 md:py-3 bg-brand-blue text-white rounded-full font-semibold text-base md:text-lg overflow-hidden flex items-center justify-center gap-2 md:gap-3 w-[200px] md:w-auto">
                     <div className="absolute inset-0 bg-brand-orange translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
                     <span className="relative z-10 flex items-center gap-2">Call Now <ArrowRight size={18} className="md:w-5 md:h-5" /></span>
                   </a>
